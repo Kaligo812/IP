@@ -30,12 +30,27 @@ cantidadNumerosAbundantes d h
 
 
 -- Ejercicio 2
-cursadasVencidas :: [(String, Integer, Integer)] -> [String]
-cursadasVencidas [] = []
-cursadasVencidas ((nombre, anio, cuatri):cursadas)
-    | anio < 2021 || (anio == 2021 && cuatri <= 1) = nombre:cursadasVencidas cursadas
-    | otherwise = cursadasVencidas cursadas
+cursadasVencidasAux :: [(String, Integer, Integer)] -> [String]
+cursadasVencidasAux [] = []
+cursadasVencidasAux ((nombre, anio, cuatri):cursadas)
+    | anio < 2021 || (anio == 2021 && cuatri <= 1) = nombre:cursadasVencidasAux cursadas
+    | otherwise = cursadasVencidasAux cursadas
 
+
+pertenece :: (Eq a) => a -> [a] -> Bool
+pertenece _ [] = False
+pertenece e (x:xs)
+    | e == x = True
+    | otherwise = pertenece e xs
+
+deduplicar :: (Eq a) => [a] -> [a]
+deduplicar [] = []
+deduplicar (x:xs)
+    | pertenece x xs = deduplicar xs
+    | otherwise = x:deduplicar xs
+
+cursadasVencidas :: [(String, Integer, Integer)] -> [String]
+cursadasVencidas xs = deduplicar (cursadasVencidasAux xs)
 
 -- Ejercicio 3
 saturarEnUmbralHastaNegativo :: [Integer] -> Integer -> [Integer]
