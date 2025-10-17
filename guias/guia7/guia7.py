@@ -344,3 +344,125 @@ def pertenece_a_cada_uno_version3(matriz: list[list[int]], e: int) -> list[bool]
 
 
 # Ejercicio 6
+def es_matriz(lista2d: list[list[int]]) -> bool:
+    if (len(lista2d) == 0):
+        return False
+    
+    nro_columnas: int = len(lista2d[0])
+
+    for fila in lista2d:
+        if (len(fila) != nro_columnas):
+            return False
+        
+    return True
+
+
+def filas_ordenadas(matriz: list[list[int]], res: list[bool]):
+    res.clear()
+    
+    for fila in matriz:
+        res.append(ordenados(fila))
+
+
+def columna(matriz: list[list[int]], c: int) -> list[int]:
+    columna: list[int] = []
+
+    for i in range(len(matriz)):
+        columna.append(matriz[i][c])
+
+    return columna
+
+
+def columnas_ordenadas(matriz: list[list[int]]) -> list[bool]:
+    res: list[int] = []
+
+    for i in range(len(matriz[0])):
+        res.append(ordenados(columna(matriz, i)))
+
+    return res
+
+
+def transponer(matriz: list[list[int]]) -> list[list[int]]:
+    matriz_transpuesta: list[list[int]] = []
+
+    for i in range(len(matriz[0])):
+        matriz_transpuesta.append(columna(matriz, i))
+
+    return matriz_transpuesta
+
+def obtener_ganador(lista: list[str]) -> int:
+    resultado: dict[str, int] = {
+        "O":0,
+        "X":1,
+        " ":2
+    }
+    target: str = lista[0]
+
+    for i in range(1, len(lista)):
+        if lista[i] != target:
+            return 2
+        
+    return resultado[target]
+
+
+def obtener_diagonales(matriz: list[list[any]]) -> list[list[any]]:
+    diagonales: list[list[any]] = []
+
+    i: int = 0
+    j: int = 0
+    diagonal: list[any] = []
+
+    # diagonal izq-der
+    while (i < len(matriz) and j < len(matriz[0])):
+        diagonal.append(matriz[i][j])
+        i += 1
+        j += 1
+
+    diagonales.append(diagonal.copy())
+    diagonal.clear()
+
+    # diagonal der-izq
+    i = 0
+    j = len(matriz[0]) - 1
+
+    while (i < len(matriz) and j >= 0):
+        diagonal.append(matriz[i][j])
+        i += 1
+        j -= 1
+
+    diagonales.append(diagonal.copy())
+    diagonal.clear()
+
+    return diagonales
+
+def quien_gana_tateti(matriz3x3: list[list[str]]) -> int:
+    ganador: int = 2
+
+    for fila in matriz3x3:
+        ganador = obtener_ganador(fila)
+        if (ganador != 2):
+            return ganador
+
+    for columna in transponer(matriz3x3):
+        ganador = obtener_ganador(columna)
+        if (ganador != 2):
+            return ganador
+
+    # chequeoando diagnolaes
+    diagonales: list[list[str]] = obtener_diagonales(matriz3x3)
+
+    for diagonal in diagonales:
+        ganador = obtener_ganador(diagonal)
+        if (ganador != 2):
+            return ganador
+
+    return ganador
+
+
+matriz: list[list[str]] = [
+    ["O","O","O"],
+    ["X","O","X"],
+    ["X","X",""]
+]
+
+print(quien_gana_tateti(matriz))
