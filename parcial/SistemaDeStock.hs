@@ -1,3 +1,8 @@
+module SistemaDeStock where
+
+
+
+
 type Producto = String
 type Mercaderia = [Producto]
 type Stock = [(Producto, Integer)]
