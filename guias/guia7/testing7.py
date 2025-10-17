@@ -74,5 +74,23 @@ class test_posSecuenciaOrdenadaMasLarga(unittest.TestCase):
 
 
 
+# Ej 3
+class test_resultadoMateria(unittest.TestCase):
+    def test_todoMayorA4YPromedio7(self):
+        notas: list[int] = [10,4]
+
+        self.assertEqual(guia7.resultadoMateria(notas), 1)
+
+    def test_soloMayorA4(self):
+        notas: list[int] = [4,4,4]
+        
+        self.assertEqual(guia7.resultadoMateria(notas), 2)
+
+    def test_desaprobado(self):
+        notas: list[int] = [1,10,10,10]
+
+        self.assertEqual(guia7.resultadoMateria(notas), 3)
+    
+
 if __name__ == "__main__":
     unittest.main(verbosity=3)

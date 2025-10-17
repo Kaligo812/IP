@@ -280,3 +280,23 @@ def eliminar_repetidos(frase: str) -> str:
 
 
 ## Ejercicio 3
+def resultadoMateria(notas: list[int]) -> int:
+    todo_mayor_a_4: bool = True
+    total: int = 0
+
+    for nota in notas:
+        if nota < 4:
+            todo_mayor_a_4 = False
+        total += nota
+    
+    promedio: float = total / len(notas)
+
+    
+    if (todo_mayor_a_4 and promedio >= 7):
+        return 1
+    elif (todo_mayor_a_4 and promedio >= 4):
+        return 2
+    else:
+        return 3
+    
+
