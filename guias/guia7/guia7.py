@@ -314,7 +314,7 @@ def saldoActual(movimientos: list[tuple[str, int]]) -> int:
     return saldo
 
 
-# Ejercicio 5
+# Ejercicio 6
 
 def pertenece_a_cada_uno_version1(matriz: list[list[int]], e: int, res: list[bool]):
     for i in range(len(matriz)):
@@ -343,7 +343,6 @@ def pertenece_a_cada_uno_version3(matriz: list[list[int]], e: int) -> list[bool]
     return res
 
 
-# Ejercicio 6
 def es_matriz(lista2d: list[list[int]]) -> bool:
     if (len(lista2d) == 0):
         return False
@@ -389,6 +388,7 @@ def transponer(matriz: list[list[int]]) -> list[list[int]]:
         matriz_transpuesta.append(columna(matriz, i))
 
     return matriz_transpuesta
+
 
 def obtener_ganador(lista: list[str]) -> int:
     resultado: dict[str, int] = {
@@ -459,10 +459,4 @@ def quien_gana_tateti(matriz3x3: list[list[str]]) -> int:
     return ganador
 
 
-matriz: list[list[str]] = [
-    ["O","O","O"],
-    ["X","O","X"],
-    ["X","X",""]
-]
-
-print(quien_gana_tateti(matriz))
+# Ejercicio 7
