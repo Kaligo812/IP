@@ -315,3 +315,32 @@ def saldoActual(movimientos: list[tuple[str, int]]) -> int:
 
 
 # Ejercicio 5
+
+def pertenece_a_cada_uno_version1(matriz: list[list[int]], e: int, res: list[bool]):
+    for i in range(len(matriz)):
+        res[i] = pertenece(matriz[i], e)
+
+# Ojala entender para que existe una version 2 😔🤚
+def pertenece_a_cada_uno_version2(matriz: list[list[int]], e: int, res: list[bool]):
+    res.clear()
+
+    for fila in matriz:
+        esta_en_la_fila: bool = False
+
+        for elemento in fila:
+            if (elemento == e): 
+                esta_en_la_fila = True
+
+        res.append(esta_en_la_fila)
+
+
+def pertenece_a_cada_uno_version3(matriz: list[list[int]], e: int) -> list[bool]:
+    res: list[bool] = []
+
+    for fila in matriz:
+        res.append(pertenece(fila, e))
+    
+    return res
+
+
+# Ejercicio 6
