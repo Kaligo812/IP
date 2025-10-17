@@ -192,5 +192,91 @@ def cantidad_de_digitos_impares(s: list[int]) -> int:
         
     return cant
     
+
+# Ejercicio 2
+
+def ceros_en_posiciones_pares(s: list[int]):
+    for i in range(len(s)):
+        if (i % 2 == 0):
+            s[i] = 0
+
+
+def ceros_en_posiciones_pares2(s: list[int]) -> list[int]:
+    res: list[int] = []
+
+    for i in range(len(s)):
+        if (i % 2 == 0):
+            res.append(0)
+        else:
+            res.append(s[i])
+
+    return res
+
+
+def sin_vocales(frase: str) -> str:
+    vocales: str = "aeiou"
+    res: str = ""
+
+    for letra in frase:
+        if (not pertenece(vocales, letra)):
+            res += letra
     
-print(cantidad_de_digitos_impares([57, 2383, 812, 246]))
+    return res
+
+
+def reemplaza_vocales(frase: str) -> str:
+    vocales: str = "aeiou"
+    res: str = ""
+
+    for letra in frase:
+        if (not pertenece(vocales, letra)):
+            res += letra
+        else:
+            res += "_"
+
+    return res
+
+
+def da_vuelta_str(frase: str) -> str:
+    str_invertida: str = ""
+
+    i: int = len(frase) - 1
+
+    while (i >= 0):
+        str_invertida += frase[i]
+        i -= 1
+
+    return str_invertida
+
+
+def copiar_str(frase: str) -> str:
+    res: str = ""
+
+    for letra in frase:
+        res += letra
+
+    return res
+
+
+def eliminar_repetidos(frase: str) -> str:
+    str_sin_repetidos: str = ""
+    copia: str = copiar_str(frase)
+
+    i: int = 0
+    copia_len = len(copia)
+
+    while (i < copia_len):
+        letra: str = copia[i]
+
+        if (letra in quitar_letra(copia, letra)):
+            copia = quitar_letra(copia, letra, todas=True)
+            copia_len = len(copia)
+
+        else:
+            str_sin_repetidos += letra
+            i += 1            
+
+    return str_sin_repetidos
+
+
+## Ejercicio 3
