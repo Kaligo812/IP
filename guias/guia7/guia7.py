@@ -300,3 +300,18 @@ def resultadoMateria(notas: list[int]) -> int:
         return 3
     
 
+# Ejercicio 4
+
+def saldoActual(movimientos: list[tuple[str, int]]) -> int:
+    saldo: int = 0
+
+    for tipo, cantidad in movimientos:
+        if tipo == "I":
+            saldo += cantidad
+        elif tipo == "R":
+            saldo -= cantidad
+
+    return saldo
+
+
+# Ejercicio 5
