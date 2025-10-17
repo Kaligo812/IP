@@ -92,5 +92,116 @@ class test_resultadoMateria(unittest.TestCase):
         self.assertEqual(guia7.resultadoMateria(notas), 3)
     
 
+#Ej 6
+
+class test_esMatriz(unittest.TestCase):
+    def test_lista2d_vacia(self):
+        self.assertFalse(guia7.es_matriz([]))
+
+    def test_lista2d_cuadrada(self):
+        self.assertTrue(guia7.es_matriz([[1]]))
+
+    def test_lista2d_cuadrada2(self):
+        matriz: list[list[int]] = [
+            [1,2,3],
+            [4,5,6],
+            [7,8,9]
+        ]
+        self.assertTrue(guia7.es_matriz(matriz))
+
+    def test_lista2d_rectangular(self):
+        matriz: list[list[int]] = [
+            [1,2,3,4],
+            [5,6,7,8],
+            [9,10,11,12]
+        ]
+
+        self.assertTrue(guia7.es_matriz(matriz))
+
+    def test_distintos_largos_de_fila(self):
+        lista2d: list[list[int]] = [
+            [1,2,3],
+            [1,2],
+            [1,2,3,4,5],
+            [1]
+        ]
+
+        self.assertFalse(guia7.es_matriz(lista2d))
+
+
+class test_quienGanaTateti(unittest.TestCase):
+    def test_tablero_vacio(self):
+        tablero: list[list[str]] = [
+            [" "," "," "],
+            [" "," "," "],
+            [" "," "," "]
+        ]
+
+        self.assertEqual(guia7.quien_gana_tateti(tablero), 2)
+
+    def test_gana_horizontalmente(self):
+        tablero: list[list[str]] = [
+            ["O","X","O"],
+            ["X","X","X"],
+            ["O","O"," "]
+        ]
+
+        self.assertEqual(guia7.quien_gana_tateti(tablero), 1)
+
+    def test_gana_horizontalmente2(self):
+        tablero: list[list[str]] = [
+            ["X","O","X"],
+            ["O","O","O"],
+            ["X","X",""]
+        ]
+
+        self.assertEqual(guia7.quien_gana_tateti(tablero), 0)
+    
+    def test_gana_verticalmente(self):
+        tablero: list[list[str]] = [
+            ["O","X","X"],
+            ["O","X","X"],
+            ["O"," ","O"]
+        ]
+
+        self.assertEqual(guia7.quien_gana_tateti(tablero), 0)
+    
+    def test_gana_verticalmente2(self):
+        tablero: list[list[str]] = [
+            ["X","O","O"],
+            ["X","O","O"],
+            ["X"," ","X"]
+        ]
+        
+        self.assertEqual(guia7.quien_gana_tateti(tablero), 1)
+    
+    def test_gana_diagonalmente(self):
+        tablero: list[list[str]] = [
+            ["X"," ","O"],
+            [" ","X","O"],
+            [" "," ","X"]
+        ]
+
+        self.assertEqual(guia7.quien_gana_tateti(tablero), 1)
+
+    def test_gana_diagonalmente2(self):
+        tablero: list[list[str]] = [
+            ["O"," ","X"],
+            [" ","O","X"],
+            [" "," ","O"]
+        ]
+
+        self.assertEqual(guia7.quien_gana_tateti(tablero), 0)
+
+    def test_empate(self):
+        tablero: list[list[str]] = [
+            ["O","X","O"],
+            ["O","X","X"],
+            ["X","O","X"]
+        ]        
+
+        self.assertEqual(guia7.quien_gana_tateti(tablero), 2)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=3)
