@@ -203,5 +203,31 @@ class test_quienGanaTateti(unittest.TestCase):
         self.assertEqual(guia7.quien_gana_tateti(tablero), 2)
 
 
+# Ejercicio 7
+def son_matrices_iguales(A: list[list[int]], B: list[list[int]]) -> bool:
+    if (len(A) != len(B) or len(A[0]) != len(B[0])):
+        return False
+    
+
+    for i in range(len(A)):
+        for j in range(len(A[0])):
+            if (A[i][j] != B[i][j]):
+                return False
+            
+    
+    return True
+
+
+class test_multiplicarMatrices(unittest.TestCase):
+    
+
+    def test_1x1(self):
+        A: list[list[int]] = [[1]]
+        B: list[list[int]] = [[2]]
+
+        self.assertTrue(son_matrices_iguales(guia7.multiplicar_matrices(A, B), [[2]]))
+
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=3)

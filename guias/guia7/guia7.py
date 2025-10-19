@@ -1,3 +1,6 @@
+import numpy as np
+from random import randint
+
 def pertenece(lista: list[int], e: int) -> bool:
     res: bool = False
     for elemento in lista:
@@ -460,3 +463,56 @@ def quien_gana_tateti(matriz3x3: list[list[str]]) -> int:
 
 
 # Ejercicio 7
+"""
+problema multiplicar_matrices(in A: seq(seq(Z)), in B: seq(seq(Z))) : seq(seq(Z)) {
+    requiere: {es_matriz(A) y es_matriz(B)}
+    requiere: {|A[0]| = |B|}
+    asegura: {|res| = |A| y |res[0]| = |B[0]|}
+    asegura: {par todo i entero, 0<=i<|res| y para todo j entero 0<=j<|res[0]|,
+        res[i][j] es la suma de multiplicar cada elemento de A[i] por el respectivo
+        elemento de columna(B, j)    
+    }
+}
+"""
+def multiplicar_matrices(A: list[list[int]], B: list[list[int]]):
+    res: list[list[int]] = []
+
+    for fila in A:
+        fila_multiplicada: list[int] = []
+
+        for columna in transponer(B):
+            suma: int = 0
+            
+            for i in range(len(fila)):
+                suma += fila[i] * columna[i]
+
+            fila_multiplicada.append(suma)
+        
+        res.append(fila_multiplicada)
+
+    return res
+
+
+def generar_matriz_cuadrada(d: int) -> list[list[int]]:
+    m: list[list[int]] = []
+    
+    for i in range(d):
+        fila: list[int] = []
+        for j in range(d):
+            fila.append(randint(0,100))
+        
+        m.append(fila)
+
+    return m
+
+
+def exponenciacion_matriz(d: int, p: int) -> list[list[int]]:
+    m: list[list[int]] = generar_matriz_cuadrada(d)
+
+    # copio la matriz m
+    res: list[list[int]] = [] + m
+
+    for _ in range(1,p):
+        res = multiplicar_matrices(res, m)
+
+    return res
