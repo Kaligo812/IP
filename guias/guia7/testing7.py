@@ -217,16 +217,73 @@ def son_matrices_iguales(A: list[list[int]], B: list[list[int]]) -> bool:
     
     return True
 
-
 class test_multiplicarMatrices(unittest.TestCase):
-    
-
     def test_1x1(self):
         A: list[list[int]] = [[1]]
         B: list[list[int]] = [[2]]
 
         self.assertTrue(son_matrices_iguales(guia7.multiplicar_matrices(A, B), [[2]]))
 
+    def test_matrices_rectangulares(self):
+        A: list[list[int]] = [
+            [1,2],
+            [3,4],
+            [5,6]
+        ]
+
+        B: list[list[int]] = [
+            [1,2,3],
+            [4,5,6]
+        ]
+
+        res: list[list[int]] = [
+            [9, 12, 15],
+            [19,26, 36],
+            [29,40, 51]
+        ]
+
+        self.assertTrue(son_matrices_iguales(guia7.multiplicar_matrices(A,B), res))
+    
+    def test_matrices_rectangulares(self):
+        A: list[list[int]] = [
+            [1,2],
+            [3,4],
+            [5,6]
+        ]
+
+        B: list[list[int]] = [
+            [1,2,3],
+            [4,5,6]
+        ]
+
+        res: list[list[int]] = [
+            [22,28],
+            [49,64],
+        ]
+
+        self.assertTrue(son_matrices_iguales(guia7.multiplicar_matrices(B,A), res))
+
+
+    def test_matrices_cuadradas(self):
+        A: list[list[int]] = [
+            [8, 5, 0], 
+            [5, 4, 6], 
+            [9, 5, 2]
+        ]
+
+        B: list[list[int]] = [
+            [8, 7, 1], 
+            [9, 9, 9], 
+            [3, 3, 0]
+        ]
+
+        res: list[list[int]] = [
+            [109, 101, 53],
+            [94, 89, 41],
+            [123, 114, 54]
+        ]
+
+        self.assertTrue(son_matrices_iguales(guia7.multiplicar_matrices(A, B), res))
 
 
 if __name__ == "__main__":

@@ -499,7 +499,7 @@ def generar_matriz_cuadrada(d: int) -> list[list[int]]:
     for i in range(d):
         fila: list[int] = []
         for j in range(d):
-            fila.append(randint(0,100))
+            fila.append(randint(0,9))
         
         m.append(fila)
 
