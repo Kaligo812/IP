@@ -516,3 +516,62 @@ def exponenciacion_matriz(d: int, p: int) -> list[list[int]]:
         res = multiplicar_matrices(res, m)
 
     return res
+
+
+# 4 programas interactivos sobre secuencias
+def ingresar_estudiantes() -> list[str]:
+    lista_de_estudiantes: list[str] = []
+
+    print("\"listo\" o ENTER para terminar")
+
+    estudiante: str = input("Estudiante: ")
+
+    while (estudiante != "listo" and estudiante):
+        lista_de_estudiantes.append(estudiante)
+        estudiante = input("Estudiante: ")
+
+    return lista_de_estudiantes
+
+# La creo para acostumbrarme a no usar funciones no permitidas
+def es_entero(texto: str) -> bool: 
+    digitos: str = "0123456789"
+
+    i: int = 0
+
+    if (str[0] == '-'):
+        i = 1
+
+    while (i < len(texto)):
+        if (not str[i] in digitos):
+            return False
+
+    return True
+
+def obtener_monto() -> int:
+    monto: str = input("monto: ")
+
+    if (not es_entero(monto)):
+        return obtener_monto()
+  
+
+    if (int(monto) < 0):
+        return obtener_monto()
+
+    return int(monto)
+
+def monedero_electronico() -> list[tuple[str, int]]:
+    historial: list[tuple[str, int]] = []
+
+    print("C - cargar creditos\nD - descontar creditso\nX - Finalizar el programa")
+
+    modo: str = input("modo: ")
+
+    while (modo != "X"):
+        if (modo == "C" or modo == "D"):
+            historial.append((modo, obtener_monto()))
+        else:
+            print("Ingrese un modo valido")
+        
+        modo = input("modo: ")
+
+    return historial
