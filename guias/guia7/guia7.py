@@ -1,5 +1,5 @@
 import numpy as np
-from random import randint
+from random import randint, choice
 
 def pertenece(lista: list[int], e: int) -> bool:
     res: bool = False
@@ -538,12 +538,13 @@ def es_entero(texto: str) -> bool:
 
     i: int = 0
 
-    if (str[0] == '-'):
+    if (texto[0] == '-'):
         i = 1
 
     while (i < len(texto)):
-        if (not str[i] in digitos):
+        if (not texto[i] in digitos):
             return False
+        i += 1
 
     return True
 
@@ -575,3 +576,78 @@ def monedero_electronico() -> list[tuple[str, int]]:
         modo = input("modo: ")
 
     return historial
+
+
+# CUANDO SE GANA EN ESTE JUEGO 😭
+def siete_y_medio() -> list[int]:
+    CARTAS: list[int] = [1,2,3,4,5,6,7,10,11,12]
+    historial: list[int] = []
+    suma: float = 0.0
+
+    # saca una carta
+    carta: int = choice(CARTAS)
+    print(f"Carta: {carta}")
+    historial.append(carta)
+    suma += carta if (not carta in [10,11,12]) else 0.5
+
+    # inicio del bucle
+    continuar: str = input("Plantarse?: ")
+    continuar.lower()
+
+    while ((continuar != "s" and continuar != "si") and suma <= 7.5):
+        #saca una carta
+            carta = choice(CARTAS)
+            print(f"Carta: {carta}")
+            historial.append(carta)
+            suma += carta if (not carta in [10,11,12]) else 0.5
+
+
+    print(f"Suma: {suma}")
+    
+    if (suma > 7.5):
+        print("Perdiste")
+    else:
+        print("Ganaste(?")
+
+    return historial
+
+
+def analizar_contrasenna(contrasenna: str) -> str:
+    longitud: int = len(contrasenna)
+    mayuscula: bool = False
+    minuscula: bool = False
+    digito: bool = False
+
+    if (longitud < 5):
+        return "ROJA"
+
+    for letra in contrasenna:
+        if (not mayuscula and ord(letra) >= ord('A') and ord(letra) <= ord('Z')):
+            mayuscula = True
+        if (not minuscula and ord(letra) >= ord('a') and ord(letra) <= ord('z')):
+            minuscula = True
+        if (not digito and ord(letra) >= ord('0') and ord(letra) <= ord('9')):
+            digito = True
+        
+
+    if (longitud > 8 and mayuscula and minuscula and digito):
+        return "VERDE"
+    else:
+        return "AMARILLA"
+
+
+def main():
+    estudiantes: list[str] = ingresar_estudiantes()
+    print()
+
+    movimientos: list[tuple[str, int]] = monedero_electronico()
+    print()
+
+    cartas: list[int] = siete_y_medio()
+    print()
+
+    contrasenna: str = input("")
+    print(analizar_contrasenna(contrasenna))
+
+if __name__ == "__main__":
+    main()
